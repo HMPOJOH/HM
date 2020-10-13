@@ -17,7 +17,7 @@ namespace CSharpCourse
             //Control.Demo2.Run();
             //Control.Demo3.Run();
 
-            Methods.Demo1.Run();
+            Methods.Demo2.Run();
 
 
             //Ctrl - F5 to run

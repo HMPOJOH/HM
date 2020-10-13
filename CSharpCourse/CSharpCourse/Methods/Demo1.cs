@@ -6,12 +6,17 @@ namespace CSharpCourse.Methods
 {
     class Demo1
     {
+
+        // Shift-F2
+
         public static void Run()
         {
+            // Ask when user start in the morning + save time
             Console.Write("When do you start in the morning? ");
             string startString = Console.ReadLine();
             var start = TimeSpan.Parse(startString);
 
+            // Ask when user go for lunch morning + save time
             Console.Write("When do you go for lunch? ");
             string lunchString = Console.ReadLine();
             TimeSpan lunch = TimeSpan.Parse(lunchString);
