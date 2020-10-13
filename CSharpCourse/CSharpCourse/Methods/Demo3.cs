@@ -5,7 +5,7 @@ namespace CSharpCourse.Methods
 {
     public class Demo3
     {
-        // until ---------> 9:40
+        // until ---------> 10:10
         public static void Run()
         {
             TimeSpan start = AskForTime("When do start to work in the morning?", TimeSpan.Zero);
