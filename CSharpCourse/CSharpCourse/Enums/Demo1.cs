@@ -69,13 +69,50 @@ namespace CSharpCourse.Enums
 
         private static bool IsValidMaterial(string answer)
         {
-            // Exercise: create this method
+            bool valid = false;
+            if (answer == "Plastic")
+                valid = true;
+            if (answer == "Wood")
+                valid = true;
+            if (answer == "Metal")
+                valid = true;
+            if (answer == "Glass")
+                valid = true;
 
-            // ---------> 9:32
-
-            // Plastic, Wood, Metal, Glass
-
-            throw new NotImplementedException();
+            return valid;
         }
+
+        private static bool IsValidMaterial2(string answer)
+        {
+            bool valid = false;
+            if (answer == "Plastic" || answer == "Wood" || answer == "Metal" || answer == "Glass")
+                valid = true;
+
+            return valid;
+        }
+
+        private static bool IsValidMaterial3(string answer)
+        {
+            if (answer == "Plastic" || answer == "Wood" || answer == "Metal" || answer == "Glass")
+                return true;
+
+            return false;
+        }
+
+        private static bool IsValidMaterial4(string answer)
+        {
+            return answer == "Plastic" || answer == "Wood" || answer == "Metal" || answer == "Glass";
+        }
+
+        private static bool IsValidMaterial5(string answer) 
+            
+            => answer == "Plastic" || answer == "Wood" || answer == "Metal" || answer == "Glass";
+
+
+        private static bool IsValidMaterial6(string answer)
+
+            => new [] { "Plastic", "Wood", "Metal", "Glass" }.Contains(answer);
+
+
     }
 }
