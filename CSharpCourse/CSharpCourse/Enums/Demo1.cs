@@ -64,7 +64,7 @@ namespace CSharpCourse.Enums
             }
 
             Console.WriteLine($"The machine is made of {x.Material}");
-
+            // --------------> 9.50
         }
 
         private static bool IsValidMaterial(string answer)
@@ -112,6 +112,21 @@ namespace CSharpCourse.Enums
         private static bool IsValidMaterial6(string answer)
 
             => new [] { "Plastic", "Wood", "Metal", "Glass" }.Contains(answer);
+
+
+        private static bool IsValidMaterial7(string answer)
+        {
+            var x = new string[] { "Plastic", "Wood", "Metal", "Glass" };
+            
+            return x.Contains(answer);
+        }
+
+        private static bool IsValidMaterial8(string answer)
+        {
+            return new string[] { "Plastic", "Wood", "Metal", "Glass" }.Contains(answer);
+        }
+
+
 
 
     }

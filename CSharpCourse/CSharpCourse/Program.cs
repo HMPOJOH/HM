@@ -17,7 +17,7 @@ namespace CSharpCourse
             //Control.Demo2.Run();
             //Control.Demo3.Run();
 
-            Classes.Demo6.Run();
+            Enums.Demo2.Run();
 
 
             //Ctrl - F5 to run
