@@ -16,7 +16,26 @@ namespace CSharpCourse.Linq.TvShows
             List<Show> allShows = ParseTvShows(rows);
 
             // Extra exercise:
-            List<Show> allShowssss = ParseTvShows_Linq(rows);
+            //List<Show> allShowssss = ParseTvShows_Linq(rows);
+
+            DisplayInfoAboutShows(allShows);
+
+        }
+
+        private static void DisplayInfoAboutShows(List<Show> allShows)
+        {
+            // All titles to the screen
+
+            // 13:55
+
+            var allTitles = allShows.Select(x => x.Title);
+
+            // Display all titles
+
+            foreach (var item in allTitles)
+            {
+                Console.WriteLine(item);
+            }
 
         }
 
@@ -29,13 +48,23 @@ namespace CSharpCourse.Linq.TvShows
         {
             var result = new List<Show>();
 
-            foreach (var item in rows)
+            foreach (string row in rows)
             {
-                // do stuff
+                // row = "SVT1*22:00*Fatta Sveriges demokrati
+
+                string[] splittedRows = row.Split('*'); // SVT1,22:00,Fatta Sveriges demokrati
+
+                var show = new Show();
+
+                show.Channel = splittedRows[0];
+                show.StartAt = TimeSpan.Parse(splittedRows[1]);
+                show.Title = splittedRows[2];
+
+                result.Add(show);
             }
             return result;
         }
-        // 13:40
+        // ----------> 13:40
 
 
         private static string[] ReadTvShowFile()
