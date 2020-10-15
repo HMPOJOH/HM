@@ -28,7 +28,7 @@ namespace CSharpCourse.Linq
             Header("The list");
             Display("list", list);
 
-            Header("Without linq");
+            Header("Without LINQ");
 
             var avg = Average(list); // Aggregation
             var sum = Sum(list);     // Aggregation
@@ -39,6 +39,32 @@ namespace CSharpCourse.Linq
             Display("sum", sum);
             Display("numbersHigherThanFive", numbersHigherThanFive);
             Display("starslist", starslist);
+
+
+            ExamplesWithLinq();
+        }
+
+        private static void ExamplesWithLinq()
+        {
+            Header("With LINQ");
+
+            var list = new List<int> { 3, 10, 7 };
+            var avg = list.Average();  // Aggregation
+            var sum = list.Sum();      // Aggregation
+            var numbersHigherThanFive = list.Where(x => x > 5); // Filter
+            var numbersHigherThanFive2 = list.Where(Kalle); // Filter
+            var starslist = list.Select(x => $"*{x}*");         // Manipulation
+
+            Display("average", avg);
+            Display("sum", sum);
+            Display("numbersHigherThanFive", numbersHigherThanFive);
+            Display("starslist", starslist);
+
+        }
+
+        private static bool Kalle(int x)
+        {
+            return x > 5;
         }
 
         private static List<string> StarifyList(List<int> list)
@@ -91,7 +117,7 @@ namespace CSharpCourse.Linq
             Console.WriteLine($"{text} = {value}");
         }
 
-        private static void Display(string text, List<int> list)
+        private static void Display(string text, IEnumerable<int> list)
         {
             var listAsString = string.Join(",", list); // "3,10,7"
 
@@ -99,7 +125,7 @@ namespace CSharpCourse.Linq
             Console.WriteLine($"{text} = {listAsString}");
         }
 
-        private static void Display(string text, List<string> list)
+        private static void Display(string text, IEnumerable<string> list)
         {
             var listAsString = string.Join(",", list); // "3,10,7"
 
