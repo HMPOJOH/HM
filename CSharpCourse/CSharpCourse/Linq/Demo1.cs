@@ -33,15 +33,37 @@ namespace CSharpCourse.Linq
             var avg = Average(list); // Aggregation
             var sum = Sum(list);     // Aggregation
             var numbersHigherThanFive = NumbersHigherThanFive(list); // Filtering
-
-            // 10:47
+            var starslist = StarifyList(list); // Manipulation  *3*  *10*  *7*
 
             Display("average", avg);
             Display("sum", sum);
             Display("numbersHigherThanFive", numbersHigherThanFive);
+            Display("starslist", starslist);
         }
 
+        private static List<string> StarifyList(List<int> list)
+        {
+            var result = new List<string>();
 
+            foreach (var item in list)
+            {
+                result.Add($"*{item}*");
+            }
+            return result;
+        }
+
+        private static List<int> NumbersHigherThanFive(List<int> list)
+        {
+            var result = new List<int>();
+            foreach (var item in list)
+            {
+                if (item > 5)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
 
         private static double Average(List<int> list)
         {
@@ -70,6 +92,14 @@ namespace CSharpCourse.Linq
         }
 
         private static void Display(string text, List<int> list)
+        {
+            var listAsString = string.Join(",", list); // "3,10,7"
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"{text} = {listAsString}");
+        }
+
+        private static void Display(string text, List<string> list)
         {
             var listAsString = string.Join(",", list); // "3,10,7"
 
