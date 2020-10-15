@@ -17,7 +17,7 @@ namespace CSharpCourse
             //Control.Demo2.Run();
             //Control.Demo3.Run();
 
-            Linq.Demo1.Run();
+            Linq.Demo2.Run();
 
             //Ctrl - F5 to run
             // F5(or play button) to debug
