@@ -45,14 +45,46 @@ namespace CSharpCourse.Linq.TvShows
 
             DisplayShows("Programs from SVT2 in chronological order", allShows.Where(x => x.Channel == "SVT2").OrderBy(x => x.StartAt));
 
-            // ---> 9:33 break!
+
+            // Does the program Kulturnyheterna exist
+            // Hint: Count or Any (or Exists)
+
+            //int x = allShows.Where(x => x.Title == "Kulturnyheterna").Count();
+            //int y = allShows.Count(x => x.Title == "Kulturnyheterna");
+            //bool z = allShows.Any(x => x.Title == "Kulturnyheterna");
+
+            //Header("Does the program Kulturnyheterna exist");
+
+            //Console.ResetColor();
+            //Console.WriteLine(z ? "YES" : "NO");
+            //Console.WriteLine();
+
+            DisplayYesOrNo("Does the program Kulturnyheterna exist", allShows.Any(x => x.Title == "Kulturnyheterna"));
+            DisplayYesOrNo("Does the program 'Ensam pappa söker' exist", allShows.Any(x=> x.Title == "Ensam pappa söker"));
+
+
+            // All programs that start at 20.00   (until 9:59)
+            DisplayShows("All programs that start at 20.00", allShows.Where(x => x.StartAt.Hours == 20));
+
+        }
+
+        private static void DisplayYesOrNo(string header, bool result)
+        {
+            Header(header);
+
+            Console.ResetColor();
+            if (result)
+                Console.WriteLine("Yes");
+            else
+                Console.WriteLine("No");
+            
         }
 
         private static void DisplayShows(string header, IEnumerable<Show> shows)
         {
             Header(header);
 
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ResetColor();
 
             foreach (var show in shows)
             {
@@ -60,9 +92,14 @@ namespace CSharpCourse.Linq.TvShows
             }
         }
 
-        private static List<Show> ParseTvShows_Linq(string[] rows)
+        private List<Show> ParseTvShows_Linq(string[] rows)
         {
-            throw new NotImplementedException();
+            return rows.Select(line => new Show
+            {
+                Channel = line.Split('*')[0],
+                StartAt = TimeSpan.Parse(line.Split('*')[1]),
+                Title = line.Split('*')[2],
+            }).ToList();
         }
 
         private static List<Show> ParseTvShows(string[] rows)
