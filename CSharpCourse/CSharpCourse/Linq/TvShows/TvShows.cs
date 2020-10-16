@@ -41,41 +41,23 @@ namespace CSharpCourse.Linq.TvShows
                 Console.WriteLine(item);
             }
 
-            // ---------------------------
+            DisplayShows("Programs that start at 21 or later", allShows.Where(x => x.StartAt.Hours >= 21));
 
-            Header("Program that start at 21 or later");
+            DisplayShows("Programs from SVT2 in chronological order", allShows.Where(x => x.Channel == "SVT2").OrderBy(x => x.StartAt));
 
-            var laterThan21 = allShows.Where(x => x.StartAt.Hours >= 21);  // use Linq  (8:45)
+            // ---> 9:33 break!
+        }
 
-            // Display all titles
-
-            Console.ForegroundColor = ConsoleColor.White;
-
-            foreach (var show in laterThan21)
-            {
-                Console.WriteLine($"{show.Channel,-4} {show.StartAt} {show.Title}");
-            }
-
-            // ---------------------------
-
-            Header("Programs from SVT2 in chronological order");
-
-            // Hint: "OrderBy" for sorting/ordering
-
-            // 9:02
-            var svt2 = allShows.Where(x => x.Channel == "SVT2").OrderBy(x => x.StartAt);
-
-            // Display all titles
+        private static void DisplayShows(string header, IEnumerable<Show> shows)
+        {
+            Header(header);
 
             Console.ForegroundColor = ConsoleColor.White;
 
-            foreach (var show in svt2)
+            foreach (var show in shows)
             {
                 Console.WriteLine($"{show.Channel,-4} {show.StartAt} {show.Title}");
             }
-
-            // (9:13)  create this method
-            DisplayShows("Prog...", allShows.Where(x => x.Channel == "SVT2").OrderBy(x => x.StartAt));
         }
 
         private static List<Show> ParseTvShows_Linq(string[] rows)
