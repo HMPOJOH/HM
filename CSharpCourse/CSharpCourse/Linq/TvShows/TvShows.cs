@@ -22,21 +22,60 @@ namespace CSharpCourse.Linq.TvShows
 
         }
 
+        // Ctrl T ==> search for anything
+
         private static void DisplayInfoAboutShows(List<Show> allShows)
         {
-            // All titles to the screen
+            Header("All titles");
 
-            // 13:55
+            // All titles to the screen
 
             var allTitles = allShows.Select(x => x.Title);
 
             // Display all titles
+
+            Console.ForegroundColor = ConsoleColor.White;
 
             foreach (var item in allTitles)
             {
                 Console.WriteLine(item);
             }
 
+            // ---------------------------
+
+            Header("Program that start at 21 or later");
+
+            var laterThan21 = allShows.Where(x => x.StartAt.Hours >= 21);  // use Linq  (8:45)
+
+            // Display all titles
+
+            Console.ForegroundColor = ConsoleColor.White;
+
+            foreach (var show in laterThan21)
+            {
+                Console.WriteLine($"{show.Channel,-4} {show.StartAt} {show.Title}");
+            }
+
+            // ---------------------------
+
+            Header("Programs from SVT2 in chronological order");
+
+            // Hint: "OrderBy" for sorting/ordering
+
+            // 9:02
+            var svt2 = allShows.Where(x => x.Channel == "SVT2").OrderBy(x => x.StartAt);
+
+            // Display all titles
+
+            Console.ForegroundColor = ConsoleColor.White;
+
+            foreach (var show in svt2)
+            {
+                Console.WriteLine($"{show.Channel,-4} {show.StartAt} {show.Title}");
+            }
+
+            // (9:13)  create this method
+            DisplayShows("Prog...", allShows.Where(x => x.Channel == "SVT2").OrderBy(x => x.StartAt));
         }
 
         private static List<Show> ParseTvShows_Linq(string[] rows)
@@ -64,12 +103,18 @@ namespace CSharpCourse.Linq.TvShows
             }
             return result;
         }
-        // ----------> 13:40
-
 
         private static string[] ReadTvShowFile()
         {
             return File.ReadAllLines(@"Linq\TvShows\tv-data.txt");
+        }
+
+        private static void Header(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine();
+            Console.WriteLine(message.ToUpper());
+            Console.WriteLine();
         }
     }
 }
